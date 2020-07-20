@@ -184,5 +184,5 @@ class grafana (
 
   create_resources('grafana_ldap_server', $ldap_servers)
   create_resources('grafana_ldap_group_mapping', $ldap_group_mappings)
-  create_resources('grafana_user', $users)
+  create_resources('grafana::grafana_user', $users)
 }

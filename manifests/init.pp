@@ -166,6 +166,7 @@ class grafana (
   String[1] $toml_package_name,
   String[1] $toml_package_ensure,
   Optional[String[1]] $toml_package_provider,
+  Hash $users
 ) {
 
   contain grafana::install
@@ -183,4 +184,5 @@ class grafana (
 
   create_resources('grafana_ldap_server', $ldap_servers)
   create_resources('grafana_ldap_group_mapping', $ldap_group_mappings)
+  create_resources('grafana_user', $users)
 }

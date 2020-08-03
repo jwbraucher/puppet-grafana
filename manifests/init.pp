@@ -160,12 +160,22 @@ class grafana (
   Boolean $create_subdirs_provisioning,
   Optional[String] $sysconfig_location,
   Optional[Hash] $sysconfig,
-  Hash[String[1], Hash] $ldap_servers,
-  Hash[String[1], Hash] $ldap_group_mappings,
   Boolean $toml_manage_package,
   String[1] $toml_package_name,
   String[1] $toml_package_ensure,
   Optional[String[1]] $toml_package_provider,
+  Hash $dashboards = {},
+  Hash $dashboard_permissions = {},
+  Hash $datasources = {},
+  Hash $folders = {},
+  Hash $ldap_configs = {},
+  Hash[String[1], Hash] $ldap_group_mappings,
+  Hash[String[1], Hash] $ldap_servers,
+  Hash $memberships = {},
+  Hash $notificaitons = {},
+  Hash $organizations = {},
+  Hash $teams = {},
+  Hash $users = {}
 ) {
 
   contain grafana::install
@@ -181,6 +191,17 @@ class grafana (
   # correct time.
   Class['grafana::config'] -> Grafana_Plugin <| |> ~> Class['grafana::service']
 
-  create_resources('grafana_ldap_server', $ldap_servers)
+  create_resources('grafana_dashboard', $dashboards)
+  create_resources('grafana_dashboard_permission', $dashboard_permissions)
+  create_resources('grafana_datasource', $datasources)
+  create_resources('grafana_folder', $folders)
+  create_resources('grafana_ldap_config', $ldap_configs)
   create_resources('grafana_ldap_group_mapping', $ldap_group_mappings)
+  create_resources('grafana_ldap_server', $ldap_servers)
+  create_resources('grafana_membership', $memberships)
+  create_resources('grafana_notification', $notificaitons)
+  create_resources('grafana_organization', $organizations)
+  create_resources('grafana_team', $teams)
+  create_resources('grafana_user', $users)
+
 }

@@ -113,6 +113,8 @@ Puppet::Type.type(:grafana_user).provide(:grafana, parent: Puppet::Provider::Gra
 
     if user.nil?
       response = send_request('POST', format('%s/admin/users', resource[:grafana_api_path]), data)
+      data[:id] = user[:id]
+      send_request 'PUT', format('%s/admin/users/%s/permissions', resource[:grafana_api_path], user[:id]), isGrafanaAdmin: data.delete(:isGrafanaAdmin)
     else
       data[:id] = user[:id]
       send_request 'PUT', format('%s/admin/users/%s/password', resource[:grafana_api_path], user[:id]), password: data.delete(:password)

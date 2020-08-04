@@ -172,7 +172,7 @@ class grafana (
   Hash[String[1], Hash] $ldap_group_mappings,
   Hash[String[1], Hash] $ldap_servers,
   Hash $memberships = {},
-  Hash $notificaitons = {},
+  Hash $notifications = {},
   Hash $organizations = {},
   Hash $teams = {},
   Hash $users = {}
@@ -199,7 +199,7 @@ class grafana (
   create_resources('grafana_ldap_group_mapping', $ldap_group_mappings)
   create_resources('grafana_ldap_server', $ldap_servers)
   create_resources('grafana_membership', $memberships)
-  create_resources('grafana_notification', $notificaitons)
+  create_resources('grafana_notification', $notifications)
   create_resources('grafana_organization', $organizations)
   create_resources('grafana_team', $teams)
   create_resources('grafana_user', $users)

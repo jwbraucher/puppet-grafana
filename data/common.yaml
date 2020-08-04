@@ -37,7 +37,7 @@ grafana::ldap_configs: {}
 grafana::ldap_group_mappings: {}
 grafana::ldap_servers: {}
 grafana::memberships: {}
-grafana::notificaitons: {}
+grafana::notifications: {}
 grafana::organizations: {}
 grafana::teams: {}
 grafana::users: {}
